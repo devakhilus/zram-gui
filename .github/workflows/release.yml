@@ -1,0 +1,30 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Qt6
+        run: |
+          sudo apt update
+          sudo apt install -y qt6-base-dev g++
+
+      - name: Build
+        run: |
+          g++ -std=c++20 zram_gui.cpp \
+            $(pkg-config --cflags --libs Qt6Widgets Qt6Core Qt6Gui) \
+            -o zram-gui
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: zram-gui
+
