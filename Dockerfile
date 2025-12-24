@@ -1,7 +1,5 @@
-cat > Dockerfile << 'EOF'
 FROM fedora:43
 
-# Install dependencies
 RUN dnf update -y && \
     dnf install -y \
     gcc-c++ \
@@ -16,7 +14,6 @@ RUN dnf update -y && \
     dbus \
     && dnf clean all
 
-# Copy & compile
 WORKDIR /app
 COPY zram_gui.cpp .
 RUN g++ -std=c++20 -O2 zram_gui.cpp \
@@ -24,11 +21,5 @@ RUN g++ -std=c++20 -O2 zram_gui.cpp \
     -o zram-gui && \
     chmod +x zram-gui
 
-# X11 setup
 ENV QT_QPA_PLATFORM=xcb
-ENV DISPLAY=:0
-
-# Run
 CMD ["./zram-gui"]
-EOF
-
