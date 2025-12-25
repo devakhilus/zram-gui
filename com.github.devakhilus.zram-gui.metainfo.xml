@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.github.devakhilus.zram-gui</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>ZRAM Configuration Tool</name>
+  <summary>Professional ZRAM Compression Utility for Linux</summary>
+  
+  <description>
+    <p>A user-friendly Qt6 GUI application for managing ZRAM (compressed RAM swap) on Linux systems. ZRAM creates a compressed block device in RAM to extend effective memory capacity and improve system responsiveness.</p>
+    
+    <p>Features:</p>
+    <ul>
+      <li>Real-time ZRAM status monitoring (like System Resources)</li>
+      <li>Easy configuration with sliders and spinners</li>
+      <li>Multiple compression algorithms: zstd, lz4, lzo, lzo-rle, deflate</li>
+      <li>Dark/Light theme support</li>
+      <li>One-click ZRAM installation</li>
+      <li>Multi-distro support: Fedora, Ubuntu, Debian, Arch, openSUSE</li>
+      <li>Passwordless sudo for ZRAM operations</li>
+      <li>Live memory and swap monitoring</li>
+      <li>Desktop integration with applications menu</li>
+    </ul>
+  </description>
+  
+  <url type="homepage">https://github.com/devakhilus/zram-gui</url>
+  <url type="bugtracker">https://github.com/devakhilus/zram-gui/issues</url>
+  <url type="help">https://github.com/devakhilus/zram-gui#readme</url>
+  
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/devakhilus/zram-gui/main/pictures/1.png</image>
+      <caption>Main Interface - Configuration Tab</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/devakhilus/zram-gui/main/pictures/2.png</image>
+      <caption>System Resources Display</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/devakhilus/zram-gui/main/pictures/3.png</image>
+      <caption>Advanced Configuration</caption>
+    </screenshot>
+  </screenshots>
+  
+  <categories>
+    <category>System</category>
+    <category>Utility</category>
+    <category>Settings</category>
+  </categories>
+  
+  <content_rating type="oars-1.1" />
+  
+  <developer_name>Akhil US (Merwick)</developer_name>
+  
+  <launchable type="desktop-id">com.github.devakhilus.zram-gui.desktop</launchable>
+  
+  <releases>
+    <release version="1.0.0" date="2025-12-25">
+      <description>
+        <p>Initial release of ZRAM GUI v1.0.0</p>
+        <ul>
+          <li>Professional Qt6-based GUI</li>
+          <li>Real-time ZRAM and system monitoring</li>
+          <li>Multi-distro support with auto-detection</li>
+          <li>Dark/Light theme support</li>
+          <li>Passwordless sudo integration</li>
+          <li>Comprehensive documentation</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+  
+  <keywords>
+    <keyword>zram</keyword>
+    <keyword>compression</keyword>
+    <keyword>memory</keyword>
+    <keyword>swap</keyword>
+    <keyword>performance</keyword>
+    <keyword>system</keyword>
+    <keyword>tools</keyword>
+  </keywords>
+</component>

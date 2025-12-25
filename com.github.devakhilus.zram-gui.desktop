@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=ZRAM Configuration Tool
+Comment=Professional ZRAM Compression Utility for Linux
+Exec=zram-gui
+Icon=zram-gui
+Terminal=false
+Categories=System;Utility;Settings;
+Keywords=zram;compression;memory;swap;
+StartupNotify=true
+StartupWMClass=ZRAM Configuration Tool
