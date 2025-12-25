@@ -1,4 +1,4 @@
-// ZRAM GUI for Linux (Complete, Production-Ready)
+// ZRAM GUI for Linux (Complete Production-Ready - FIXED sudo/systemd)
 // Qt6 + C++20 - Multi-distro (Fedora/Ubuntu/Arch)
 // Compile: g++ -std=c++20 zram_gui.cpp $(pkg-config --cflags --libs Qt6Widgets Qt6Core Qt6Gui) -o zram-gui
 
@@ -71,7 +71,7 @@ private:
 };
 
 ZramGui::ZramGui(QWidget *parent) : QWidget(parent) {
-    setWindowTitle("ZRAM Configuration Tool v1.0.0");
+    setWindowTitle("🚀 ZRAM Configuration Tool v1.0.0");
     resize(1000, 750);
 
     QVBoxLayout *root = new QVBoxLayout(this);
@@ -515,9 +515,14 @@ void ZramGui::writeConfigAndRestart(const QString &reason) {
         return;
     }
     
+    // Reload systemd and restart ZRAM
     run("systemctl daemon-reload", false, true);
-    run("swapoff /dev/zram0 2>/dev/null || true", false, true);
-    run("systemctl restart systemd-zram-setup@zram* 2>/dev/null || systemctl restart dev-zram0.swap 2>/dev/null || true", false, true);
+    
+    // Stop existing ZRAM
+    run("systemctl stop systemd-zram-setup@zram0.service 2>/dev/null || swapoff /dev/zram0 2>/dev/null || true", false, true);
+    
+    // Start ZRAM again
+    run("systemctl start systemd-zram-setup@zram0.service 2>/dev/null || systemctl restart dev-zram0.swap 2>/dev/null || true", false, true);
     
     logSuccess("✅ ZRAM configuration applied successfully");
     updateStatus();
@@ -525,9 +530,12 @@ void ZramGui::writeConfigAndRestart(const QString &reason) {
 
 void ZramGui::stopZram() {
     logAction("🛑 Stopping ZRAM");
-    run("swapoff /dev/zram0 2>/dev/null || true", false, true);
+    
+    run("systemctl stop systemd-zram-setup@zram0.service 2>/dev/null || swapoff /dev/zram0 2>/dev/null || true", false, true);
+    run("systemctl stop dev-zram0.swap 2>/dev/null || true", false, true);
     run("rmmod zram 2>/dev/null || true", false, true);
-    logSuccess("ZRAM stopped successfully");
+    
+    logSuccess("✅ ZRAM stopped successfully");
     updateStatus();
 }
 
